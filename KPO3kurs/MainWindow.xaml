@@ -1,0 +1,29 @@
+﻿<Window x:Class="KPO3kurs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KPO3kurs"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Margin="0,0,-28,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="625*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="addButton" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="114" Click="addButton_Click" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="employeeGrid" MouseLeftButtonDown="employeeGrid_MouseDoubleClick"  Margin="10,47,10,137" CanUserReorderColumns="False" CanUserResizeColumns="False" Grid.ColumnSpan="3" IsSynchronizedWithCurrentItem="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Name}" CanUserResize="True" MinWidth="200" IsReadOnly="True" Foreground="Black"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Rank}" MinWidth="200" IsReadOnly="True" Foreground="Black"/>
+                <DataGridTextColumn Header="Дата устройства" Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Black" MinWidth="130"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Foreground="Black" MinWidth="100"/>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Black" MinWidth="130"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="deleteButton" Grid.Column="1" Content="Удалить" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top" Click="deleteButton_Click" Height="32" Width="118" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
