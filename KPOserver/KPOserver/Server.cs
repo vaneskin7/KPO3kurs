@@ -110,7 +110,91 @@ namespace KPOserver
             Console.WriteLine("Клиент отключился.");
         }
 
-        
+        public static void Authorization(Socket clientSocket) // авторизация
+        {
+            using (StreamReader reader = new StreamReader("D:\\КУРСАЧ ПОЧТИ ФИНАЛ\\KSIS_server\\groups\\users.txt"))
+            {
+                string text;
+                while ((text = reader.ReadLine()) != null)
+                {
+                    string[] fileData = text.Split(' ');
+                    string[] inputData = userQuery.Split(' ');
+                    if (fileData[0] == inputData[0] && fileData[1] == inputData[1])
+                    {
+                        isCorrect = true;
+                        break;
+                    }
+                }
+
+            }
+            byte[] byteSend = Encoding.UTF8.GetBytes("всё чиназес");
+            int lenBytesSend = clientSocket.Send(byteSend);// передаём данные клиенту
+
+            Console.WriteLine("Моё сообщение для клиента: " + "чиназес");
+            Console.WriteLine("Сервер завершил передачу данных клиенту");
+        }
+
+        public static void UpdateData(string query, Socket clientSocket) // обновление данных в БД
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=employees;Trusted_Connection=True;TrustServerCertificate=true";
+                SqlConnection myConnection = new SqlConnection(connectionString);
+                myConnection.Open();
+                SqlCommand command = new SqlCommand(query, myConnection);
+                command.ExecuteNonQuery();
+                byte[] byteSend = Encoding.UTF8.GetBytes("SUCCESS");
+                int lenBytesSend = clientSocket.Send(byteSend);// передаём данные клиенту
+                Console.WriteLine("Моё сообщение для клиента: SUCCESS");
+                Console.WriteLine("Сервер завершил передачу данных клиенту");
+            }
+            catch (Exception)
+            {
+                byte[] byteSend = Encoding.UTF8.GetBytes("FAILURE");
+                int lenBytesSend = clientSocket.Send(byteSend);// передаём данные клиенту
+                Console.WriteLine("Моё сообщение для клиента: FAILURE");
+                Console.WriteLine("Сервер завершил передачу данных клиенту");
+                throw;
+            }
+
+        }
+
+        public static void SendDataToClient(string query, Socket clientSocket) // передача данных клиенту
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=employees;Trusted_Connection=True;TrustServerCertificate=true";
+                SqlConnection myConnection = new SqlConnection(connectionString);
+                myConnection.Open();
+                SqlCommand command = new SqlCommand(query, myConnection);
+                SqlDataReader reader = command.ExecuteReader();
+                ObservableCollection<Employee> dataFromDataBase = new ObservableCollection<Employee>();
+                while (reader.Read())
+                {
+                    Employee employee = new Employee();
+                    employee.Id = Convert.ToInt32(reader[0]);
+                    employee.Name = reader[1].ToString();
+                    employee.Rank = reader[2].ToString();
+                    employee.Date = (DateTime)reader[3];
+                    employee.Gender = reader[4].ToString();
+                    employee.BirthDate = (DateTime)reader[5];
+                    dataFromDataBase.Add(employee);
+                }
+                string serializedData = string.Join(Environment.NewLine, dataFromDataBase.Select(e => e.ToString()));
+                byte[] byteSend = Encoding.UTF8.GetBytes(serializedData);
+                int lenBytesSend = clientSocket.Send(byteSend);// передаём данные клиенту
+
+                Console.WriteLine("Моё сообщение для клиента: " + serializedData);
+                Console.WriteLine("Сервер завершил передачу данных клиенту");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+
+        }
+
     }
 
 }
