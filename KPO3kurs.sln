@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPO3kurs", "KPO3kurs\KPO3kurs.csproj", "{DFB0C440-5741-418F-9480-CB178CAAFF77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KPO3kurs", "KPO3kurs\KPO3kurs.csproj", "{DFB0C440-5741-418F-9480-CB178CAAFF77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintWordLib", "PrintWordLib\PrintWordLib.csproj", "{EB460D35-56B8-40BB-BB20-44B940DA5DCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintExcelLib", "PrintExcel\PrintExcelLib.csproj", "{2F6FC2DD-D5E8-4D76-BE96-A61BA0F06D22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{DFB0C440-5741-418F-9480-CB178CAAFF77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB0C440-5741-418F-9480-CB178CAAFF77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB0C440-5741-418F-9480-CB178CAAFF77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB460D35-56B8-40BB-BB20-44B940DA5DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB460D35-56B8-40BB-BB20-44B940DA5DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB460D35-56B8-40BB-BB20-44B940DA5DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB460D35-56B8-40BB-BB20-44B940DA5DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6FC2DD-D5E8-4D76-BE96-A61BA0F06D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6FC2DD-D5E8-4D76-BE96-A61BA0F06D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6FC2DD-D5E8-4D76-BE96-A61BA0F06D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6FC2DD-D5E8-4D76-BE96-A61BA0F06D22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,12 +16,15 @@
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <TextBox x:Name="rankTextBox" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <Label Content="Должность" HorizontalAlignment="Left" Margin="60,48,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <Label Content="Работает с" HorizontalAlignment="Left" Margin="60,103,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="genderTextBox" HorizontalAlignment="Left" Margin="10,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <Label Content="Пол" HorizontalAlignment="Left" Margin="60,161,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="birthDayTextBox" HorizontalAlignment="Left" Margin="34,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <Label Content="День рождения" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-        <Button x:Name="AddEmployeeButton" Content="Добавить сотрудника" HorizontalAlignment="Left" Margin="140,255,0,0" VerticalAlignment="Top" Click="AddEmployeeButton_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="AddEmployeeButton" Content="Добавить сотрудника" HorizontalAlignment="Left" Margin="0,312,0,0" VerticalAlignment="Top" Click="AddEmployeeButton_Click" Grid.Column="1"/>
+        <DatePicker x:Name="datePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="12,105,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="birthDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="44,0,0,0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="genderComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="1,163,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Мужской"/>
+            <ComboBoxItem Content="Женский"/>
+        </ComboBox>
     </Grid>
 </Window>

@@ -5,25 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KPO3kurs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid Margin="0,0,-28,0">
+        Title="Курсовая работа" Height="566" Width="856" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Margin="10,0,10,-16">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="104*"/>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="625*"/>
-            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="327*"/>
+            <ColumnDefinition Width="336*"/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="addButton" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="114" Click="addButton_Click" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="employeeGrid" MouseLeftButtonDown="employeeGrid_MouseDoubleClick"  Margin="10,47,10,137" CanUserReorderColumns="False" CanUserResizeColumns="False" Grid.ColumnSpan="3" IsSynchronizedWithCurrentItem="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+        <Button x:Name="addButton" Margin="10,0,97,36" Height="53" Click="addButton_Click" Grid.Column="2" Background="White" BorderBrush="White" VerticalAlignment="Bottom">
+            <StackPanel>
+                <Image Source="Resources/add.png" Height="29" Width="47"/>
+                <TextBlock Text="Добавить" Height="18" Width="54" TextAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <DataGrid x:Name="employeeGrid"  Margin="0,32,0,94" CanUserReorderColumns="False" CanUserResizeColumns="False" Grid.ColumnSpan="4" IsSynchronizedWithCurrentItem="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" AutoGenerateColumns="False" MouseRightButtonDown="employeeGrid_MouseRightButtonDown" Grid.Column="1" BorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Width="814">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Visibility="Hidden"/>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding Name}" CanUserResize="True" MinWidth="200" IsReadOnly="True" Foreground="Black"/>
-                <DataGridTextColumn Header="Должность" Binding="{Binding Rank}" MinWidth="200" IsReadOnly="True" Foreground="Black"/>
-                <DataGridTextColumn Header="Дата устройства" Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Black" MinWidth="130"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Name}" CanUserResize="True" MinWidth="240" IsReadOnly="True" Foreground="Black"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Rank}" MinWidth="210" IsReadOnly="True" Foreground="Black"/>
+                <DataGridTextColumn Header="Дата устройства" Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Black" MinWidth="143"/>
                 <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Foreground="Black" MinWidth="100"/>
-                <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Black" MinWidth="130"/>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Black" MinWidth="143"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="deleteButton" Grid.Column="1" Content="Удалить" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top" Click="deleteButton_Click" Height="32" Width="118" Grid.ColumnSpan="2"/>
+        <Button x:Name="deleteButton" Grid.Column="2" HorizontalAlignment="Left" Margin="81,0,0,36" VerticalAlignment="Bottom" Click="deleteButton_Click" Height="53" Width="66" BorderBrush="White" Foreground="White" Background="White">
+            <StackPanel>
+                <Image Source="Resources/delete.png" Height="29" Width="47"/>
+                <TextBlock Text="Удалить" Height="18" Width="54" Foreground="Black" TextAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <ToolBarTray Grid.ColumnSpan="5" Background="White" VerticalAlignment="Top" Height="27">
+            <ToolBar Margin="0,0,-846,0" Background="White" ToolBarTray.IsLocked="True" UseLayoutRounding="False" VerticalAlignment="Center">
+                <Button Content="Файл" Click="FileButton_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Сохранить в Word" Click="SaveWordButton_Click"/>
+                            <MenuItem Header="Сохранить в Excel" Click="SaveExcelButton_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Content="Работники" Click="EmployeeButton_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить" Click="addButton_Click"/>
+                            <MenuItem Header="Редактировать" Click="employeeButton_Click"/>
+                            <MenuItem Header="Удалить" Click="deleteButton_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Content="Справка"/>
+                <Button Content="О программе"/>
+
+                <!-- Добавьте другие элементы управления для Toolbar, если необходимо -->
+            </ToolBar>
+        </ToolBarTray>
+        <TextBox x:Name="searchBoxText" Margin="96,0,0,36" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="4" Height="23" HorizontalAlignment="Left" Width="158"/>
+        <Button x:Name="searchButton" Grid.Column="4" Margin="0,0,0,36" Click="searchButton_Click" VerticalAlignment="Bottom" Height="53" BorderBrush="White" Foreground="White" Background="White" HorizontalAlignment="Right" Width="66">
+            <StackPanel>
+                <Image Source="Resources/search.png" Height="29" Width="47"/>
+                <TextBlock Text="Поиск" Height="18" Width="54" Foreground="Black" TextAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <ComboBox x:Name="searchComboBox" Margin="96,0,0,66" VerticalAlignment="Bottom" Height="23" Grid.Column="4" HorizontalAlignment="Left" Width="158">
+            <ComboBoxItem Content="ФИО"/>
+            <ComboBoxItem Content="Должность"/>
+            <ComboBoxItem Content="Пол"/>
+        </ComboBox>
+        <Button x:Name="refreshEmployeesButton" Grid.Column="2" HorizontalAlignment="Left" Margin="152,0,0,36" VerticalAlignment="Bottom" Click="refreshEmployeesButton_Click" Height="53" Width="66" BorderBrush="White" Foreground="White" Background="White" Grid.ColumnSpan="2">
+            <StackPanel>
+                <Image Source="Resources/update.png" Height="29" Width="47"/>
+                <TextBlock Text="Обновить" Height="18" Width="54" Foreground="Black" TextAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

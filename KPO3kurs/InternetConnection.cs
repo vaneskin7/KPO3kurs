@@ -14,7 +14,7 @@ namespace KPO3kurs
     public class InternetConnection
     {
         public static int PORT = 8888;
-        private const int SIZE = 2048;
+        private const int SIZE = 8192;
         private static string login;
         private static string password;
         public static bool connection;
@@ -64,6 +64,7 @@ namespace KPO3kurs
             catch (SocketException ex)
             {
                 connection = false;
+                MessageBox.Show("Отсутствует подключение к серверу", "Ошибка", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 return false;
             }
         }
@@ -84,12 +85,14 @@ namespace KPO3kurs
             }
             catch (Exception)
             {
+                MessageBox.Show("Отсутствует подключение к серверу", "Ошибка", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                
                 connection = false;
                 return null;
             }
         }
 
-        public static bool SendDataToServer(string query) // отправка данных на сервер
+        public static bool SendDataToServer(string query, out string textServer) // отправка данных на сервер
         {
             try
             {
@@ -97,7 +100,7 @@ namespace KPO3kurs
                     s1.Send(byteSend);
                     byte[] byteRec = new byte[SIZE];
                     int len = s1.Receive(byteRec);
-                    string textServer = null;
+                    textServer = null;
                     textServer = Encoding.UTF8.GetString(byteRec, 0, len);
                     connection = true;
                     return true;
@@ -106,6 +109,7 @@ namespace KPO3kurs
             {
                     connection = false;
                     MessageBox.Show("Отсутствует подключение к серверу", "Ошибка", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    textServer = "";
                     return false;
             }
         }

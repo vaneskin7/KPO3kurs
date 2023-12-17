@@ -13,14 +13,17 @@
                     <Label Content="ФИО" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top"/>
                     <Label Content="Должность" HorizontalAlignment="Left" Margin="34,59,0,0" VerticalAlignment="Top"/>
                     <Label Content="Дата устройства" HorizontalAlignment="Left" Margin="34,108,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Пол" HorizontalAlignment="Left" Margin="34,162,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="34,208,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="34,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="hgf"/>
+                    <Label Content="Пол" HorizontalAlignment="Left" Margin="34,168,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="34,228,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="34,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="rankTextBox" HorizontalAlignment="Left" Margin="34,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="dateTextBox" HorizontalAlignment="Left" Margin="34,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="genderTextBox" HorizontalAlignment="Left" Margin="34,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="birthDateTextBox" HorizontalAlignment="Left" Margin="34,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="saveChangesButton" Content="Сохранить изменения" HorizontalAlignment="Left" Margin="34,276,0,0" VerticalAlignment="Top" Click="saveChangesButton_Click"/>
+                    <Button x:Name="saveChangesButton" Content="Сохранить изменения" HorizontalAlignment="Left" Margin="34,306,0,0" VerticalAlignment="Top" Click="saveChangesButton_Click"/>
+                    <DatePicker x:Name="empDatePicker" HorizontalAlignment="Left" Margin="34,138,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="birthDatePicker" HorizontalAlignment="Left" Margin="39,254,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="genderComboBox" HorizontalAlignment="Left" Margin="39,194,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem Content="Мужской"/>
+                        <ComboBoxItem Content="Женский"/>
+                    </ComboBox>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">

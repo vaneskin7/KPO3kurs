@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,43 +14,102 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace KPO3kurs
 {
     public partial class EditEmployeeInfo : Window
     {
         int currentRowIndex;
+        List<Employee> employeeToEdit;
         public EditEmployeeInfo()
         {
             InitializeComponent();
         }
-        public EditEmployeeInfo(int rowIndex)
+        public EditEmployeeInfo(int rowIndex, string employeeData)
         {
             InitializeComponent();
-            currentRowIndex = rowIndex;
+            employeeToEdit = employeeData
+            .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(Employee.FromString)
+            .ToList();
+            nameTextBox.Text = employeeToEdit[0].Name;
+            rankTextBox.Text = employeeToEdit[0].Rank;
+            empDatePicker.Text = employeeToEdit[0].Date.ToShortDateString();
+            genderComboBox.SelectedItem = employeeToEdit[0].Gender;
+            birthDatePicker.Text = employeeToEdit[0].BirthDate.ToShortDateString();
+            if (employeeToEdit[0].Gender == "Мужской")
+            {
+                genderComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                genderComboBox.SelectedIndex = 1;
+            }
+            /*currentRowIndex = rowIndex;
             nameTextBox.Text = MainWindow.employees[currentRowIndex].Name;
             rankTextBox.Text = MainWindow.employees[currentRowIndex].Rank;
-            dateTextBox.Text = MainWindow.employees[currentRowIndex].Date.ToShortDateString();
-            genderTextBox.Text = MainWindow.employees[currentRowIndex].Gender;
-            birthDateTextBox.Text = MainWindow.employees[currentRowIndex].BirthDate.ToShortDateString();
+            empDatePicker.Text = MainWindow.employees[currentRowIndex].Date.ToShortDateString();*/
+
+            /*if (MainWindow.employees[currentRowIndex].Gender == "Мужской")
+            {
+                genderComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                genderComboBox.SelectedIndex = 1;
+            }
+            //genderTextBox.Text = MainWindow.employees[currentRowIndex].Gender;
+            birthDatePicker.Text = MainWindow.employees[currentRowIndex].BirthDate.ToShortDateString();*/
         }
 
         private void saveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             string query = $"UPDATE employeesInfo SET empName = '{nameTextBox.Text}', empRank = '{rankTextBox.Text}'," +
-                $"empDate = '{dateTextBox.Text}', empGender = '{genderTextBox.Text}', empBirthDate = '{birthDateTextBox.Text}' " +
-                $"WHERE empID = {MainWindow.employees[currentRowIndex].Id}";
-
-            bool isCorrect = InternetConnection.SendDataToServer(query);
-            if (isCorrect = true)
+                $"empDate = '{empDatePicker.Text}', empGender = '{genderComboBox.Text}', empBirthDate = '{birthDatePicker.Text}' " +
+                $"WHERE empID = {employeeToEdit[0].Id}";
+            if (CheckIsCorrect() == true)
             {
-                MainWindow.employees[currentRowIndex].Name = nameTextBox.Text;
-                MainWindow.employees[currentRowIndex].Rank = rankTextBox.Text;
-                MainWindow.employees[currentRowIndex].Date = DateTime.Parse(dateTextBox.Text);
-                MainWindow.employees[currentRowIndex].Gender = genderTextBox.Text;
-                MainWindow.employees[currentRowIndex].BirthDate = DateTime.Parse(birthDateTextBox.Text);
-            }
-            this.Close();
+
+                bool isSuccessful = InternetConnection.SendDataToServer(query, out string temp);
+                if (isSuccessful == true)
+                {
+                    int index = MainWindow.employees.IndexOf(MainWindow.employees.FirstOrDefault(emp => emp.Id == employeeToEdit[0].Id));
+
+                    if (index != null)
+                    {
+                        //int index = MainWindow.employees.IndexOf(targetEmployee);
+                        // Обновляем значения
+                        //targetEmployee.Name = nameTextBox.Text;
+                        //targetEmployee.Position = newPosition;
+                        MainWindow.employees[index].Name = nameTextBox.Text;
+                        MainWindow.employees[index].Rank = rankTextBox.Text;
+                        MainWindow.employees[index].Date = DateTime.Parse(empDatePicker.Text);
+                        MainWindow.employees[index].Gender = genderComboBox.Text;
+                        MainWindow.employees[index].BirthDate = DateTime.Parse(birthDatePicker.Text);
+                        // Ваш код для выполнения дополнительных действий
+                    }
+/*
+                    MainWindow.employees[currentRowIndex].Name = nameTextBox.Text;
+                    MainWindow.employees[currentRowIndex].Rank = rankTextBox.Text;
+                    MainWindow.employees[currentRowIndex].Date = DateTime.Parse(empDatePicker.Text);
+                    MainWindow.employees[currentRowIndex].Gender = genderComboBox.Text;
+                    MainWindow.employees[currentRowIndex].BirthDate = DateTime.Parse(birthDatePicker.Text);*/
+                }
+                this.Close();
+            }  
         }
+
+        public bool CheckIsCorrect()
+        {
+            bool isCorrect = true;
+            if (nameTextBox.Text.Length >= 30 || rankTextBox.Text.Length >= 30)
+            {
+                MessageBox.Show("Введены некорректные данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isCorrect = false;
+            }
+            return isCorrect;
+        }
+
     }
 }

@@ -30,18 +30,39 @@ namespace KPO3kurs
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            Employee newPerson = new Employee { Name = nameTextBox.Text, Rank = rankTextBox.Text, Date = DateTime.Parse(dateTextBox.Text),
-                                                Gender = genderTextBox.Text, BirthDate = DateTime.Parse(birthDayTextBox.Text)};
-            string query = $"INSERT INTO employeesInfo (empName, empRank, empDate, empGender, empBirthDate) VALUES" +
-                $"('{newPerson.Name}', '{newPerson.Rank}', '{newPerson.Date}', '{newPerson.Gender}', '{newPerson.BirthDate}')";
-            bool isCorrect = InternetConnection.SendDataToServer(query);
-            if (isCorrect = true)
+            if (CheckIsCorrect() == true)
             {
-                employees.Add(newPerson);
-                EditEmployeeInfo editEmployeeInfo = new EditEmployeeInfo();
-                editEmployeeInfo.ShowDialog();
+                Employee newPerson = new Employee
+                {
+                    Name = nameTextBox.Text,
+                    Rank = rankTextBox.Text,
+                    Date = DateTime.Parse(datePicker.Text),
+                    Gender = genderComboBox.Text,
+                    BirthDate = DateTime.Parse(birthDatePicker.Text)
+                };
+                string query = $"INSERT;" +
+                    $"{newPerson.Name};{newPerson.Rank};{newPerson.Date.ToString("yyyy-MM-dd")};{newPerson.Gender};{newPerson.BirthDate.ToString("yyyy-MM-dd")}";
+                string employeeID;
+                bool isSuccessful = InternetConnection.SendDataToServer(query, out employeeID);
+                if (isSuccessful = true)
+                {
+                    newPerson.Id = int.Parse(employeeID);
+                    employees.Add(newPerson);
+                }
+                this.Close();
             }
-            this.Close(); 
+        }
+
+        public bool CheckIsCorrect()
+        {
+            bool isCorrect = true;
+            if (nameTextBox.Text.Length >= 30 || rankTextBox.Text.Length >= 30 || genderComboBox.SelectedIndex == -1 
+                || datePicker.Text == "" || birthDatePicker.Text == "")
+            {
+                MessageBox.Show("Введены некорректные данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                isCorrect = false;
+            }
+            return isCorrect;
         }
     }
 }
