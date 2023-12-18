@@ -5,26 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KPO3kurs"
         mc:Ignorable="d"
-        Title="AddEmployeeWindow" Height="450" Width="800">
+        Title="{DynamicResource addTitle}" Height="250" Width="370" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="72*"/>
-            <ColumnDefinition Width="229*"/>
-            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Имя" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox x:Name="rankTextBox" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <Label Content="Должность" HorizontalAlignment="Left" Margin="60,48,0,0" VerticalAlignment="Top"/>
-        <Label Content="Работает с" HorizontalAlignment="Left" Margin="60,103,0,0" VerticalAlignment="Top"/>
-        <Label Content="Пол" HorizontalAlignment="Left" Margin="60,161,0,0" VerticalAlignment="Top"/>
-        <Label Content="День рождения" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-        <Button x:Name="AddEmployeeButton" Content="Добавить сотрудника" HorizontalAlignment="Left" Margin="0,312,0,0" VerticalAlignment="Top" Click="AddEmployeeButton_Click" Grid.Column="1"/>
-        <DatePicker x:Name="datePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="12,105,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="birthDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="44,0,0,0" VerticalAlignment="Center"/>
-        <ComboBox x:Name="genderComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="1,163,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Мужской"/>
-            <ComboBoxItem Content="Женский"/>
+        <Label Content="{DynamicResource fullname}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="48" Grid.Column="1" Margin="10,10,0,0"/>
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Right" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Grid.Column="1" Height="18"/>
+        <TextBox x:Name="rankTextBox" HorizontalAlignment="Right" Margin="0,45,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Grid.Column="1" Height="18"/>
+        <Label Content="{DynamicResource rank}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="72" Grid.Column="1"/>
+        <Label Content="{DynamicResource employeeDate}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="106" Grid.Column="1"/>
+        <Label Content="{DynamicResource gender}" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="53" Grid.Column="1"/>
+        <Label Content="{DynamicResource employeeBirthDate}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="96" Grid.Column="1" Margin="10,134,0,0"/>
+        <Button x:Name="AddEmployeeButton" Content="{DynamicResource add}" Margin="12,165,14,0" VerticalAlignment="Top" Click="AddEmployeeButton_Click" Grid.Column="1" Height="40"/>
+        <DatePicker x:Name="datePicker" Grid.Column="1" HorizontalAlignment="Right" Margin="0,72,14,0" VerticalAlignment="Top" Height="24" Width="219"/>
+        <DatePicker x:Name="birthDatePicker" Grid.Column="1" HorizontalAlignment="Right" Margin="0,135,14,0" VerticalAlignment="Top" Height="24" Width="219"/>
+        <ComboBox x:Name="genderComboBox" Grid.Column="1" HorizontalAlignment="Right" Margin="0,105,14,0" VerticalAlignment="Top" Width="219" Height="22">
+            <ComboBoxItem Content="{DynamicResource male}"/>
+            <ComboBoxItem Content="{DynamicResource female}"/>
         </ComboBox>
     </Grid>
 </Window>

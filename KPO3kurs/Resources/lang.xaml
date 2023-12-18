@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <v:String x:Key="login">Login</v:String>
+    <v:String x:Key="address">Address</v:String>
+    <v:String x:Key="port">Port</v:String>
+    <v:String x:Key="password">Password</v:String>
+    <v:String x:Key="authorizationTitle">Authorization</v:String>
+    <v:String x:Key="log_in">Log in</v:String>
+
+    <v:String x:Key="langSettingsTitle">Language</v:String>
+
+    <v:String x:Key="file">File</v:String>
+    <v:String x:Key="employees">Employees</v:String>
+    <v:String x:Key="about">About</v:String>
+    <v:String x:Key="add">Add</v:String>
+    <v:String x:Key="delete">Delete</v:String>
+    <v:String x:Key="refresh">Refresh</v:String>
+    <v:String x:Key="search">Search</v:String>
+    <v:String x:Key="fullname">Name</v:String>
+    <v:String x:Key="rank">Rank</v:String>
+    <v:String x:Key="employeeDate">Employee date</v:String>
+    <v:String x:Key="gender">Gender</v:String>
+    <v:String x:Key="employeeBirthDate">Birth date</v:String>
+    <v:String x:Key="edit">Edit</v:String>
+    <v:String x:Key="saveExcel">Save in Excel</v:String>
+    <v:String x:Key="saveWord">Save in Word</v:String>
+    <v:String x:Key="mainWindowTitle">Cource project</v:String>
+    <v:String x:Key="addTitle">Add Employee</v:String>
+
+    <v:String x:Key="editTitle">Edit employee info</v:String>
+    <v:String x:Key="saveEdit">Save changes</v:String>
+    <v:String x:Key="male">Мужчина</v:String>
+    <v:String x:Key="female">Женщина</v:String>
+
+    <v:String x:Key="about1">Course project on the subject of "КПО"</v:String>
+    <v:String x:Key="about2">"Software development company, IT-company"</v:String>
+    <v:String x:Key="about3">Developers: Kachan I.V. and Dlussky K.Y. group 10701121</v:String>
+    <v:String x:Key="about4">2023 year</v:String>
+
+
+</ResourceDictionary>

@@ -5,36 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KPO3kurs"
         mc:Ignorable="d"
-        Title="EditEmployeeInfo" Height="450" Width="800">
+        Title="{DynamicResource editTitle}" Height="250" Width="370" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TabControl BorderBrush="White">
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <Label Content="ФИО" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Должность" HorizontalAlignment="Left" Margin="34,59,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Дата устройства" HorizontalAlignment="Left" Margin="34,108,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Пол" HorizontalAlignment="Left" Margin="34,168,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="34,228,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="34,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="rankTextBox" HorizontalAlignment="Left" Margin="34,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="saveChangesButton" Content="Сохранить изменения" HorizontalAlignment="Left" Margin="34,306,0,0" VerticalAlignment="Top" Click="saveChangesButton_Click"/>
-                    <DatePicker x:Name="empDatePicker" HorizontalAlignment="Left" Margin="34,138,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="birthDatePicker" HorizontalAlignment="Left" Margin="39,254,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="genderComboBox" HorizontalAlignment="Left" Margin="39,194,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="Мужской"/>
-                        <ComboBoxItem Content="Женский"/>
-                    </ComboBox>
-                </Grid>
-            </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="39*"/>
-                        <ColumnDefinition Width="755*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-            </TabItem>
-        </TabControl>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="59*"/>
+        </Grid.RowDefinitions>
+        <Label Content="{DynamicResource fullname}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource rank}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource employeeDate}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource gender}" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Label Content="{DynamicResource employeeBirthDate}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Right" Margin="0,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Height="18"/>
+        <TextBox x:Name="rankTextBox" HorizontalAlignment="Right" Margin="0,45,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219"/>
+        <Button x:Name="saveChangesButton" Content="{DynamicResource saveEdit}" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top" Click="saveChangesButton_Click" Width="310" Height="40" Grid.Row="1"/>
+        <DatePicker x:Name="empDatePicker" HorizontalAlignment="Right" Margin="0,72,10,0" VerticalAlignment="Top" Width="219"/>
+        <DatePicker x:Name="birthDatePicker" HorizontalAlignment="Right" Margin="0,27,10,0" VerticalAlignment="Top" Width="219" Grid.Row="1"/>
+        <ComboBox x:Name="genderComboBox" HorizontalAlignment="Right" Margin="0,106,10,0" VerticalAlignment="Top" Width="219" Grid.RowSpan="2">
+            <ComboBoxItem Content="{DynamicResource male}"/>
+            <ComboBoxItem Content="{DynamicResource female}"/>
+        </ComboBox>
     </Grid>
 </Window>

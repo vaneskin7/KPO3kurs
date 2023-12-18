@@ -70,7 +70,6 @@ namespace KPO3kurs
                 $"WHERE empID = {employeeToEdit[0].Id}";
             if (CheckIsCorrect() == true)
             {
-
                 bool isSuccessful = InternetConnection.SendDataToServer(query, out string temp);
                 if (isSuccessful == true)
                 {
@@ -78,23 +77,12 @@ namespace KPO3kurs
 
                     if (index != null)
                     {
-                        //int index = MainWindow.employees.IndexOf(targetEmployee);
-                        // Обновляем значения
-                        //targetEmployee.Name = nameTextBox.Text;
-                        //targetEmployee.Position = newPosition;
                         MainWindow.employees[index].Name = nameTextBox.Text;
                         MainWindow.employees[index].Rank = rankTextBox.Text;
                         MainWindow.employees[index].Date = DateTime.Parse(empDatePicker.Text);
                         MainWindow.employees[index].Gender = genderComboBox.Text;
                         MainWindow.employees[index].BirthDate = DateTime.Parse(birthDatePicker.Text);
-                        // Ваш код для выполнения дополнительных действий
                     }
-/*
-                    MainWindow.employees[currentRowIndex].Name = nameTextBox.Text;
-                    MainWindow.employees[currentRowIndex].Rank = rankTextBox.Text;
-                    MainWindow.employees[currentRowIndex].Date = DateTime.Parse(empDatePicker.Text);
-                    MainWindow.employees[currentRowIndex].Gender = genderComboBox.Text;
-                    MainWindow.employees[currentRowIndex].BirthDate = DateTime.Parse(birthDatePicker.Text);*/
                 }
                 this.Close();
             }  

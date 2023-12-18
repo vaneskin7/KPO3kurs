@@ -17,17 +17,15 @@ namespace PrintWordLib
             Word.Application WordApp = new Word.Application();
             Word.Document doc = WordApp.Documents.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             object start = 0, end = 0;
-            Word.Range rng = doc.Paragraphs[1].Range;
-
-            rng.Font.Name = "Times New Roman";
-            rng.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
-            rng.Font.Size = 12;
-
-
+            Word.Range employeeList = doc.Paragraphs[1].Range;
+            employeeList.Text = "ФИО, должность, дата устройства, пол, дата рождения.";
+            employeeList.Font.Name = "Times New Roman";
+            employeeList.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            employeeList.Font.Size = 12;
             int i = 1;
             foreach (Employee emp in employees)
             {
-                rng.Text += $"{i}. {emp.Name}, {emp.Rank}, {emp.Date.ToShortDateString}, {emp.Gender}, {emp.BirthDate.ToShortDateString}";
+                employeeList.Text += $"{i}. {emp.Name}, {emp.Rank}, {emp.Date.ToShortDateString()}, {emp.Gender}, {emp.BirthDate.ToShortDateString()}";
                 i++;
             }
             

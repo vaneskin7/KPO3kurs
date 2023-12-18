@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KPO3kurs.AddEmployeeWindow">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAIAAAABAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>AddEmployeeWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KPO3kurs.Employee">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAACEEAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KPO3kurs.InternetConnection">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCIAAAAAAACAAAAAIABAAIAAAAAAAAAQAAABgACEgA=</HashCode>
+      <FileName>InternetConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KPO3kurs.EditEmployeeInfo">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAABAAAAAAAAAAEAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>EditEmployeeInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KPO3kurs.MainWindow">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAAAIAAAAAAEAAACAIAAgAgABAAAAAAAAgAABAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

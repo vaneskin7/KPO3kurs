@@ -13,12 +13,12 @@ namespace KPO3kurs
 {
     public class InternetConnection
     {
-        public static int PORT = 8888;
+        public static int PORT = 0;
         private const int SIZE = 8192;
-        private static string login;
-        private static string password;
+        //private static string login;
+        //private static string password;
         public static bool connection;
-        public static string ipAdress = "localhost";
+        public static string ipAdress = "";
         private static Socket s1 = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private static IPHostEntry ipHost;
         private static IPAddress IPAddress;
@@ -26,24 +26,35 @@ namespace KPO3kurs
 
         public InternetConnection(string userLogin, string userPassword)
         {
-            login = userLogin;
-            password = userPassword;
+            //login = userLogin;
+            //password = userPassword;
         }
 
         public InternetConnection() {}
 
-        public static bool ConnectToServer() // подключение к серверу
+        public static bool ConnectToServer(string login, string password, string adress, int port) // подключение к серверу
         {
             try
             {
+                PORT = port;
+                ipAdress = adress;
                 s1 = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                ipHost = Dns.Resolve(ipAdress);
-                IPAddress = ipHost.AddressList[1];
-                ipEndPoint = new IPEndPoint(IPAddress, PORT);
+                try
+                {
+                    ipHost = Dns.Resolve(ipAdress);
+                    IPAddress = ipHost.AddressList[1];
+                    ipEndPoint = new IPEndPoint(IPAddress, PORT);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Отсутствует подключение к серверу", "Ошибка", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    return false;
+                    throw;
+                }
+                
                 s1.Connect(ipEndPoint);
-                string textClient = "connect " + login + " " + password + Convert.ToChar(3);
+                string textClient = "connect " + login + ";" + password; //Convert.ToChar(3);
                 byte[] byteSend = Encoding.UTF8.GetBytes(textClient);
-                // отправляем массив байтов через сокет
                 s1.Send(byteSend);
                 byte[] byteRec = new byte[SIZE];//буфер для сообщений сервера
                 int len = s1.Receive(byteRec); // получаем от сервера массив байтов 
@@ -56,9 +67,8 @@ namespace KPO3kurs
                 }
                 else
                 {
-                        return true;
-                    //s1.Close();
-                    //return false;
+                    s1.Close();
+                    return false;
                 }
             }
             catch (SocketException ex)

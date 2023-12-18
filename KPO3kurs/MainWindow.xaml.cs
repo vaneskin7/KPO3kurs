@@ -18,8 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
-//using PrintWordLib;
-//using PrintExcelLib;
+using PrintWordLib;
+using PrintExcelLib;
 using Microsoft.Win32;
 
 namespace KPO3kurs
@@ -32,11 +32,6 @@ namespace KPO3kurs
             InitializeComponent();
             employees = new ObservableCollection<Employee>();
             employeeGrid.ItemsSource = employees;
-            InternetConnection internetConnection = new InternetConnection("vaneskin7", "qwerty228");
-            if (InternetConnection.ConnectToServer() == false)
-            {
-                this.Close();
-            }
         }
 
         private void FileButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +55,7 @@ namespace KPO3kurs
             if (saveFileDialog.ShowDialog() == true)
             {
                 string serializedData = string.Join(Environment.NewLine, employees.Select(e => e.ToString()));
-                //PrintWord.SaveInWord(serializedData, saveFileDialog.FileName);
+                PrintWord.SaveInWord(serializedData, saveFileDialog.FileName);
             }    
         }
 
@@ -72,7 +67,7 @@ namespace KPO3kurs
             if (saveFileDialog.ShowDialog() == true)
             {
                 string serializedData = string.Join(Environment.NewLine, employees.Select(e => e.ToString()));
-                //PrintExcel.SaveInExcel(serializedData, saveFileDialog.FileName);
+                PrintExcel.SaveInExcel(serializedData, saveFileDialog.FileName);
             }
         }
 
@@ -105,11 +100,8 @@ namespace KPO3kurs
             }
             employeeGrid.Items.Refresh();
             string serializedData = string.Join(Environment.NewLine, employees.Select(e => e.ToString()));
-            //PrintWord.SaveInWord(serializedData);
-            //PrintExcel.SaveInExcel(serializedData);
         }
 
-        // add new employee info
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow(this, employees);
@@ -117,7 +109,6 @@ namespace KPO3kurs
             employeeGrid.ItemsSource = employees;
         }
 
-        // delete employee info
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (employeeGrid.SelectedIndex != -1)
@@ -161,7 +152,6 @@ namespace KPO3kurs
                 dataGrid.Items.Refresh();
             }
         }
-
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
@@ -222,6 +212,17 @@ namespace KPO3kurs
                 employeeGrid.ItemsSource = employees;
                 employeeGrid.Items.Refresh();
             }         
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void infoButton_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindow info = new InfoWindow();
+            info.Show();
         }
     }
 }

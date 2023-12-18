@@ -26,30 +26,40 @@ namespace KPO3kurs
             this.mainWindow = mainWindow;
             this.employees = employees;
             InitializeComponent();
+            datePicker.SelectedDate = DateTime.Now;
+            birthDatePicker.SelectedDate = Convert.ToDateTime("01.01.2000");
         }
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckIsCorrect() == true)
+            try
             {
-                Employee newPerson = new Employee
+                if (CheckIsCorrect() == true)
                 {
-                    Name = nameTextBox.Text,
-                    Rank = rankTextBox.Text,
-                    Date = DateTime.Parse(datePicker.Text),
-                    Gender = genderComboBox.Text,
-                    BirthDate = DateTime.Parse(birthDatePicker.Text)
-                };
-                string query = $"INSERT;" +
-                    $"{newPerson.Name};{newPerson.Rank};{newPerson.Date.ToString("yyyy-MM-dd")};{newPerson.Gender};{newPerson.BirthDate.ToString("yyyy-MM-dd")}";
-                string employeeID;
-                bool isSuccessful = InternetConnection.SendDataToServer(query, out employeeID);
-                if (isSuccessful = true)
-                {
-                    newPerson.Id = int.Parse(employeeID);
-                    employees.Add(newPerson);
+                    Employee newPerson = new Employee
+                    {
+                        Name = nameTextBox.Text,
+                        Rank = rankTextBox.Text,
+                        Date = DateTime.Parse(datePicker.Text),
+                        Gender = genderComboBox.Text,
+                        BirthDate = DateTime.Parse(birthDatePicker.Text)
+                    };
+                    string query = $"INSERT;" +
+                        $"{newPerson.Name};{newPerson.Rank};{newPerson.Date.ToString("yyyy-MM-dd")};{newPerson.Gender};{newPerson.BirthDate.ToString("yyyy-MM-dd")}";
+                    string employeeID;
+                    bool isSuccessful = InternetConnection.SendDataToServer(query, out employeeID);
+                    if (isSuccessful == true)
+                    {
+                        newPerson.Id = int.Parse(employeeID);
+                        employees.Add(newPerson);
+                    }
+                    this.Close();
                 }
-                this.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

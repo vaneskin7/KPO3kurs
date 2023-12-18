@@ -11,6 +11,7 @@
     <None Remove="Resources\add.png" />
     <None Remove="Resources\delete.png" />
     <None Remove="Resources\search.png" />
+    <None Remove="Resources\settings.png" />
     <None Remove="Resources\update.png" />
   </ItemGroup>
 
@@ -19,9 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="PrintExcelLib">
+      <HintPath>..\PrintExcel\bin\Release\net7.0-windows\PrintExcelLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintWordLib">
+      <HintPath>..\PrintWordLib\bin\Release\net7.0-windows\PrintWordLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\add.png" />
     <Resource Include="Resources\delete.png" />
     <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\settings.png" />
     <Resource Include="Resources\update.png" />
   </ItemGroup>
 
